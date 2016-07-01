@@ -43,5 +43,55 @@ public class CardTest {
 	public void testConstructorWrongValue() throws Exception {
 		card = new Card("SX");		
 	}
+    
+    @Test
+	public void testComparableLower() throws Exception {
+		Card card1 = new Card("C3");
+		Card card2 = new Card("H4");
+		
+		assertTrue(card1.compareTo(card2) < 0);
+	}
 
+    @Test
+	public void testComparableHigher() throws Exception {
+		Card card1 = new Card("SA");
+		Card card2 = new Card("CQ");
+		
+		assertTrue(card1.compareTo(card2) > 0);
+	}
+
+    @Test
+	public void testComparableEquals() throws Exception {
+		Card card1 = new Card("SK");
+		Card card2 = new Card("HK");
+		
+		assertEquals(0, card1.compareTo(card2));
+	}
+
+    @Test
+	public void testEquals() throws Exception {
+		Card card1 = new Card("S3");
+		Card card2 = new Card("S3");
+		
+		assertEquals(card1, card2);
+		
+	}
+    
+    @Test
+	public void testNotEqualsValue() throws Exception {
+		Card card1 = new Card("S3");
+		Card card2 = new Card("S4");
+		
+		assertNotEquals(card1, card2);
+		
+	}
+
+    @Test
+	public void testNotEqualsSuit() throws Exception {
+		Card card1 = new Card("S3");
+		Card card2 = new Card("H3");
+		
+		assertNotEquals(card1, card2);
+    }
+		
 }
