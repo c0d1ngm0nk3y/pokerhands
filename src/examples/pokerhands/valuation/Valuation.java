@@ -24,4 +24,8 @@ public class Valuation implements Comparable<Valuation> {
 		return result;
 	}
 
+	public Rank getRank() {
+		return this.rank;
+	}
+
 }

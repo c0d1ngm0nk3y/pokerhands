@@ -12,7 +12,9 @@ public class ValuationTest {
 	
 	@Test
 	public void testConstructor() {
-		valuation = new Valuation(Rank.HIGH_CARD, Value.TWO);
+		valuation = new Valuation(Rank.FLUSH, Value.TWO);
+		
+		assertEquals(Rank.FLUSH, valuation.getRank());
 	}
 	
 	@Test
