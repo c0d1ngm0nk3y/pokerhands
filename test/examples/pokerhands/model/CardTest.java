@@ -74,7 +74,15 @@ public class CardTest {
 		Card card2 = new Card("S3");
 		
 		assertEquals(card1, card2);
+		assertEquals(card1.hashCode(), card2.hashCode());
+	}
+
+    @Test
+	public void testEqualsIdentity() throws Exception {
+		Card card1 = new Card("S3");
 		
+		assertEquals(card1, card1);
+		assertEquals(card1.hashCode(), card1.hashCode());
 	}
     
     @Test
@@ -83,7 +91,7 @@ public class CardTest {
 		Card card2 = new Card("S4");
 		
 		assertNotEquals(card1, card2);
-		
+		assertNotEquals(card1.hashCode(), card2.hashCode());
 	}
 
     @Test
@@ -92,6 +100,7 @@ public class CardTest {
 		Card card2 = new Card("H3");
 		
 		assertNotEquals(card1, card2);
+		assertNotEquals(card1.hashCode(), card2.hashCode());
     }
 		
 }
