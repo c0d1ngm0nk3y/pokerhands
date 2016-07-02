@@ -30,8 +30,9 @@ public class HandTest {
 		assertEquals(Value.ACE, cards[4].getValue());
 	}
 
-	private Hand createHand(String v1, String v2, String v3, String v4, String v5) {
-		return new Hand(new Card(v1), new Card(v2), new Card(v3), new Card(v4), new Card(v5));
+	private Hand createHand(String c1, String c2, String c3, String c4, String c5) {
+		Hand hand = TestUtils.createHand(c1, c2, c3, c4, c5);
+		return hand;
 	}
 
 }

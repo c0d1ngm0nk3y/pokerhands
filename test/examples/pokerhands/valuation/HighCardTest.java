@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import examples.pokerhands.model.Card;
 import examples.pokerhands.model.Hand;
+import examples.pokerhands.model.TestUtils;
 
 public class HighCardTest {
 	
@@ -13,8 +14,8 @@ public class HighCardTest {
 
 	@Test
 	public void testEvaluateHighCard() {
-		Hand hand = new Hand(new Card("D2"), new Card("D5"), new Card("H3"), new Card("SK"), new Card("SK"));
-		
+		Hand hand = TestUtils.createHand("D2", "D5", "H3", "SK", "SK");
+	
 		Valuation valuation = highCard.evaluate(hand);
 		
 		assertEquals(Rank.HIGH_CARD, valuation.getRank());
