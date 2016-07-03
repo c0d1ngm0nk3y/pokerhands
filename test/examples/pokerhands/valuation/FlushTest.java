@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import examples.pokerhands.model.Card;
 import examples.pokerhands.model.Hand;
 import examples.pokerhands.model.TestUtils;
 
@@ -46,6 +45,17 @@ public class FlushTest {
 		Valuation valuation = flush.evaluate(hand);
 		
 		assertEquals(Rank.NONE, valuation.getRank());
+	}
+
+	@Test
+	public void testFlushTieBreakers() {
+		Hand hand1 = TestUtils.createHand("C3", "C2", "CK", "CT", "CA");
+		Hand hand2 = TestUtils.createHand("D3", "D4", "DK", "DT", "DA");
+
+		Valuation v1 = flush.evaluate(hand1);
+		Valuation v2 = flush.evaluate(hand2);
+		
+		assertTrue(v1.compareTo(v2) < 0);
 	}
 
 }

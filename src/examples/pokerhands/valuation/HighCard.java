@@ -2,7 +2,6 @@ package examples.pokerhands.valuation;
 
 import examples.pokerhands.model.Card;
 import examples.pokerhands.model.Hand;
-import examples.pokerhands.model.Value;
 
 public class HighCard implements HandRanking {
 

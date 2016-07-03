@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import examples.pokerhands.model.Card;
 import examples.pokerhands.model.Hand;
 import examples.pokerhands.model.TestUtils;
 
