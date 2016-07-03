@@ -102,5 +102,13 @@ public class CardTest {
 		assertNotEquals(card1, card2);
 		assertNotEquals(card1.hashCode(), card2.hashCode());
     }
-		
+	
+    @Test
+   	public void testNotEquals2Kings() throws Exception {
+   		Card card1 = new Card("SK");
+   		Card card2 = new Card("DK");
+   		
+   		assertNotEquals(card1, card2);
+   		assertNotEquals(card1.hashCode(), card2.hashCode());
+       }
 }
