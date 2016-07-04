@@ -11,6 +11,7 @@ import examples.pokerhands.valuation.Flush;
 import examples.pokerhands.valuation.HighCard;
 import examples.pokerhands.valuation.Pair;
 import examples.pokerhands.valuation.Rater;
+import examples.pokerhands.valuation.TwoPairs;
 import examples.pokerhands.valuation.Valuation;
 
 public class RankingsIntegrationTest {
@@ -23,6 +24,7 @@ public class RankingsIntegrationTest {
 	public void setup() {
 		rater.register(new HighCard());
 		rater.register(new Pair());
+		rater.register(new TwoPairs());
 		rater.register(new Flush());
 	}
 
@@ -73,6 +75,17 @@ public class RankingsIntegrationTest {
 	@Test
 	public void testFlushBeatsPair() {
 		hand1 = TestUtils.createHand("D2", "D3", "D4", "D5", "D6");
+		hand2 = TestUtils.createHand("C5", "DT", "HK", "CA", "SA");
+		
+		Valuation v1 = rater.rate(hand1);
+		Valuation v2 = rater.rate(hand2);
+		
+		assertTrue(v1.compareTo(v2) > 0);
+	}
+
+	@Test
+	public void testTwoPairsBeatsPair() {
+		hand1 = TestUtils.createHand("D2", "C2", "D4", "C4", "D6");
 		hand2 = TestUtils.createHand("C5", "DT", "HK", "CA", "SA");
 		
 		Valuation v1 = rater.rate(hand1);
