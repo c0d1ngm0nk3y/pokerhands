@@ -11,6 +11,7 @@ import examples.pokerhands.valuation.Flush;
 import examples.pokerhands.valuation.HighCard;
 import examples.pokerhands.valuation.Pair;
 import examples.pokerhands.valuation.Rater;
+import examples.pokerhands.valuation.ThreeOfAKind;
 import examples.pokerhands.valuation.TwoPairs;
 import examples.pokerhands.valuation.Valuation;
 
@@ -25,6 +26,7 @@ public class RankingsIntegrationTest {
 		rater.register(new HighCard());
 		rater.register(new Pair());
 		rater.register(new TwoPairs());
+		rater.register(new ThreeOfAKind());
 		rater.register(new Flush());
 	}
 
@@ -92,6 +94,17 @@ public class RankingsIntegrationTest {
 		Valuation v2 = rater.rate(hand2);
 		
 		assertTrue(v1.compareTo(v2) > 0);
+	}
+	
+	@Test
+	public void testThreeOfAKindBeatsTwoPairs() {
+		hand1 = TestUtils.createHand("D2", "C2", "D4", "C4", "D6");
+		hand2 = TestUtils.createHand("C5", "S5", "H5", "CA", "SQ");
+		
+		Valuation v1 = rater.rate(hand1);
+		Valuation v2 = rater.rate(hand2);
+		
+		assertTrue(v1.compareTo(v2) < 0);
 	}
 	
 }
