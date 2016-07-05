@@ -18,6 +18,10 @@ public class RankingUtil {
 		return findNOfAKind(3, hand, null);
 	}
 	
+	static Value find4OfAKind(Hand hand) {
+		return findNOfAKind(4, hand, null);
+	}
+	
 	static Value findNOfAKind(int n, Hand hand, Value exceptValue) {
 		Card[] cards = hand.getCards();
 		

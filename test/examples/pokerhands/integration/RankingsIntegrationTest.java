@@ -8,6 +8,7 @@ import org.junit.Test;
 import examples.pokerhands.model.Hand;
 import examples.pokerhands.model.TestUtils;
 import examples.pokerhands.valuation.Flush;
+import examples.pokerhands.valuation.FourOfAKind;
 import examples.pokerhands.valuation.HighCard;
 import examples.pokerhands.valuation.Pair;
 import examples.pokerhands.valuation.Rater;
@@ -28,6 +29,7 @@ public class RankingsIntegrationTest {
 		rater.register(new TwoPairs());
 		rater.register(new ThreeOfAKind());
 		rater.register(new Flush());
+		rater.register(new FourOfAKind());
 	}
 
 	@Test
@@ -106,5 +108,16 @@ public class RankingsIntegrationTest {
 		
 		assertTrue(v1.compareTo(v2) < 0);
 	}
-	
+
+	@Test
+	public void testFourOfAKindBeatsFlush() {
+		hand1 = TestUtils.createHand("D2", "D3", "D4", "D5", "D6");
+		hand2 = TestUtils.createHand("C5", "DA", "HA", "CA", "SA");
+		
+		Valuation v1 = rater.rate(hand1);
+		Valuation v2 = rater.rate(hand2);
+		
+		assertTrue(v1.compareTo(v2) < 0);
+	}
+
 }
