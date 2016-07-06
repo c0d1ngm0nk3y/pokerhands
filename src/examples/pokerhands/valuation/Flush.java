@@ -9,7 +9,7 @@ public class Flush implements HandRanking {
 	@Override
 	public Valuation evaluate(Hand hand) {
 		
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 		Suit suit = cards[0].getSuit();
 		
 		for(Card c : cards) {

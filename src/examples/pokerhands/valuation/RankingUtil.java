@@ -23,7 +23,7 @@ public class RankingUtil {
 	}
 	
 	static Value findNOfAKind(int n, Hand hand, Value exceptValue) {
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 		
 		int x = n - 1;
 		for(int ii = 4; ii >= x; --ii) {

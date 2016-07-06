@@ -7,7 +7,7 @@ public class Straight implements HandRanking {
 
 	@Override
 	public Valuation evaluate(Hand hand) {
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 
 		if (isSuccessor(cards[3], cards[4]) && isSuccessor(cards[2], cards[3]) && isSuccessor(cards[1], cards[2])
 				&& isSuccessor(cards[0], cards[1])) {

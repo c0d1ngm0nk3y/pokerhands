@@ -6,21 +6,21 @@ import java.util.List;
 
 public class Hand {
 	
-	private List<Card> cards = new ArrayList<Card>();
+	private List<Card> sortedCards = new ArrayList<Card>();
 
 	public Hand(Card card1, Card card2, Card card3, Card card4, Card card5) {
-		this.cards.add(card1);
-		this.cards.add(card2);
-		this.cards.add(card3);
-		this.cards.add(card4);
-		this.cards.add(card5);
-		Collections.sort(this.cards);
+		this.sortedCards.add(card1);
+		this.sortedCards.add(card2);
+		this.sortedCards.add(card3);
+		this.sortedCards.add(card4);
+		this.sortedCards.add(card5);
+		Collections.sort(this.sortedCards);
 	}
 
-	public Card[] getCards() {
-		int size = this.cards.size();
+	public Card[] getSortedCards() {
+		int size = this.sortedCards.size();
 		Card[] c = new Card[size];
-		return cards.toArray(c);
+		return sortedCards.toArray(c);
 	}
 
 }

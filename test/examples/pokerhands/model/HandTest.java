@@ -17,7 +17,7 @@ public class HandTest {
 	public void testHandHas5Cards() {
 		hand = TestUtils.createHand("C2", "D3", "H4", "S5", "C6");
 		
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 		assertEquals(5, cards.length);
 	}
 
@@ -25,7 +25,7 @@ public class HandTest {
 	public void testHandHas5Cards2Kings() {
 		hand = TestUtils.createHand("D2", "D5", "H3", "SK", "DK");
 		
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 		assertEquals(5, cards.length);
 	}
 
@@ -33,7 +33,7 @@ public class HandTest {
 	public void testHandIsSorted() {
 		hand = TestUtils.createHand("CQ", "DK", "HA", "SJ", "HT");
 		
-		Card[] cards = hand.getCards();
+		Card[] cards = hand.getSortedCards();
 		assertEquals(Value.TEN, cards[0].getValue());
 		assertEquals(Value.ACE, cards[4].getValue());
 	}
