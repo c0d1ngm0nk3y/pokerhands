@@ -14,6 +14,7 @@ import examples.pokerhands.valuation.HighCard;
 import examples.pokerhands.valuation.Pair;
 import examples.pokerhands.valuation.Rater;
 import examples.pokerhands.valuation.Straight;
+import examples.pokerhands.valuation.StraightFlush;
 import examples.pokerhands.valuation.ThreeOfAKind;
 import examples.pokerhands.valuation.TwoPairs;
 import examples.pokerhands.valuation.Valuation;
@@ -34,6 +35,7 @@ public class RankingsIntegrationTest {
 		rater.register(new Flush());
 		rater.register(new FullHouse());
 		rater.register(new FourOfAKind());
+		rater.register(new StraightFlush());
 	}
 
 	@Test
@@ -115,7 +117,7 @@ public class RankingsIntegrationTest {
 
 	@Test
 	public void testFourOfAKindBeatsFlush() {
-		hand1 = TestUtils.createHand("D2", "D3", "D4", "D5", "D6");
+		hand1 = TestUtils.createHand("C2", "D3", "S4", "D5", "D6");
 		hand2 = TestUtils.createHand("C5", "DA", "HA", "CA", "SA");
 
 		Valuation v1 = rater.rate(hand1);
@@ -139,6 +141,17 @@ public class RankingsIntegrationTest {
 	public void testStraightBeatsThreeOfAKind() {
 		hand1 = TestUtils.createHand("H2", "D3", "D4", "S5", "D6");
 		hand2 = TestUtils.createHand("C5", "H6", "HA", "CA", "SA");
+
+		Valuation v1 = rater.rate(hand1);
+		Valuation v2 = rater.rate(hand2);
+
+		assertTrue(v1.compareTo(v2) > 0);
+	}
+
+	@Test
+	public void testStraightFlushBeatsFourOfAKind() {
+		hand1 = TestUtils.createHand("H2", "H3", "H4", "H5", "H6");
+		hand2 = TestUtils.createHand("C5", "SA", "HA", "CA", "SA");
 
 		Valuation v1 = rater.rate(hand1);
 		Valuation v2 = rater.rate(hand2);
