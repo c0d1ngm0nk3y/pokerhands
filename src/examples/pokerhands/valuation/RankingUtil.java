@@ -2,6 +2,7 @@ package examples.pokerhands.valuation;
 
 import examples.pokerhands.model.Card;
 import examples.pokerhands.model.Hand;
+import examples.pokerhands.model.Suit;
 import examples.pokerhands.model.Value;
 
 public class RankingUtil {
@@ -40,6 +41,35 @@ public class RankingUtil {
 		
 		return null;
 	}
+	
+	static boolean isFlush(Hand hand) {
+		Card[] cards = hand.getSortedCards();
+		Suit suit = cards[0].getSuit();
+		
+		for(Card c : cards) {
+			if(c.getSuit() != suit) {
+				return false;		
+			}
+		}
+		
+		return true;
+	}
+	
+	static boolean isStraight(Hand hand) {
+		Card[] cards = hand.getSortedCards();
+
+		if (isSuccessor(cards[3], cards[4]) && isSuccessor(cards[2], cards[3]) && isSuccessor(cards[1], cards[2])
+				&& isSuccessor(cards[0], cards[1])) {
+			return true;
+		}
+
+		return false;
+	}
+
+	static boolean isSuccessor(Card card, Card successor) {
+		return successor.getValue().ordinal() == (card.getValue().ordinal() + 1);
+	}
+
 		
 
 }
