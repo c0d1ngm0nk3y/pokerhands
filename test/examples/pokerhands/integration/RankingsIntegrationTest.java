@@ -7,16 +7,7 @@ import org.junit.Test;
 
 import examples.pokerhands.model.Hand;
 import examples.pokerhands.model.TestUtils;
-import examples.pokerhands.valuation.Flush;
-import examples.pokerhands.valuation.FourOfAKind;
-import examples.pokerhands.valuation.FullHouse;
-import examples.pokerhands.valuation.HighCard;
-import examples.pokerhands.valuation.Pair;
 import examples.pokerhands.valuation.Rater;
-import examples.pokerhands.valuation.Straight;
-import examples.pokerhands.valuation.StraightFlush;
-import examples.pokerhands.valuation.ThreeOfAKind;
-import examples.pokerhands.valuation.TwoPairs;
 import examples.pokerhands.valuation.Valuation;
 
 public class RankingsIntegrationTest {
@@ -27,15 +18,7 @@ public class RankingsIntegrationTest {
 
 	@Before
 	public void setup() {
-		rater.register(new HighCard());
-		rater.register(new Pair());
-		rater.register(new TwoPairs());
-		rater.register(new ThreeOfAKind());
-		rater.register(new Straight());
-		rater.register(new Flush());
-		rater.register(new FullHouse());
-		rater.register(new FourOfAKind());
-		rater.register(new StraightFlush());
+		rater.registerAll();
 	}
 
 	@Test

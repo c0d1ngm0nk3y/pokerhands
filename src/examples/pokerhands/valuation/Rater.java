@@ -27,4 +27,16 @@ public class Rater {
 		this.rankings.add(ranking);
 	}
 
+	public void registerAll() {
+		register(new HighCard());
+		register(new Pair());
+		register(new TwoPairs());
+		register(new ThreeOfAKind());
+		register(new Straight());
+		register(new Flush());
+		register(new FullHouse());
+		register(new FourOfAKind());
+		register(new StraightFlush());
+	}
+
 }
