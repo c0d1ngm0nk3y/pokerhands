@@ -14,7 +14,7 @@ public class Parser {
 			return TestUtils.createHand(cards[0], cards[1], cards[2], cards[3], cards[4]);
 		}
 		
-		throw new IllegalArgumentException("Could not parse Hand: " + input);
+		throw new IllegalArgumentException("Could not parse Hand: <" + input + ">");
 	}
 
 	private String[] getValidatedCardStrings(String input) {

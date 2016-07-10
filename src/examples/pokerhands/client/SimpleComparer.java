@@ -26,55 +26,67 @@ public class SimpleComparer {
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
-		Parser parser = new Parser();
 		
 		try {
-			writer.write("Enter hand 1: ");
-			writer.flush();
-			String line1 = reader.readLine();
-			if(null == line1) {
-				line1 = "";
-			}
-			Hand hand1 = parser.parseHand(line1);
+			Hand hand1 = readHand(reader, writer, 1);
 			Valuation v1 = rater.rate(hand1);
 			
-			writer.write("Enter hand 2: ");
-			writer.flush();
-			String line2 = reader.readLine();
-			if(null == line2) {
-				line2 = "";
-			}
-			Hand hand2 = parser.parseHand(line2);
+			Hand hand2 = readHand(reader, writer, 2);
 			Valuation v2 = rater.rate(hand2);
 			
 			int result = v1.compareTo(v2);
 			
 			if(result > 0) {
-				writer.write("Winning hand: ");
-				writer.write(hand1.toString());
-				writer.write(" (" + v1.getRank().toString() + ")");
+				reportWinner(writer, hand1, v1);
 			} else if(result < 0) {
-				writer.write("Winning hand: ");
-				writer.write(hand2.toString());
-				writer.write(" (" + v2.getRank().toString() + ")");
+				reportWinner(writer, hand2, v2);
 			} else {
-				writer.write("No winning hand");
+				reportNoWinner(writer);
 			}
-			writer.write("\n\n");
-			writer.flush();
+
+			writeEnd(writer);
 		} catch (Exception e) {
 			try {
-				writer.write("Exception:" + e);
-				writer.flush();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				reportException(writer, e);
+			} catch (IOException io) {
+				io.printStackTrace();
 			}
 			return false;
 		}
-		//FIXME close resource
 		
 		return true;
+	}
+
+	private void reportException(BufferedWriter writer, Exception e) throws IOException {
+		writer.write("An error occured:" + e.getMessage() + "\n");
+		writer.flush();
+	}
+
+	private void writeEnd(BufferedWriter writer) throws IOException {
+		writer.write("\n\n");
+		writer.flush();
+	}
+
+	private void reportNoWinner(BufferedWriter writer) throws IOException {
+		writer.write("No winning hand");
+	}
+
+	private void reportWinner(BufferedWriter writer, Hand hand, Valuation value) throws IOException {
+		writer.write("Winning hand: ");
+		writer.write(hand.toString());
+		writer.write(" (" + value.getRank().toString() + ")");
+	}
+
+	private Hand readHand(BufferedReader reader, BufferedWriter writer, int number) throws IOException {
+		writer.write("Enter hand " + number + ": ");
+		writer.flush();
+		String line = reader.readLine();
+		if(null == line) {
+			line = "";
+		}
+		
+		Hand hand = new Parser().parseHand(line);
+		return hand;
 	}
 
 }
