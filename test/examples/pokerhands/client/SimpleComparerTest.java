@@ -86,4 +86,24 @@ public class SimpleComparerTest {
 		assertFalse(getOutput().contains("S5 S6 S7 S8 S9"));
 	}
 	
+	@Test
+	public void testWinnerHandsRankIsPartofOutput() {
+		createInput("S2 S6 S7 S8 S9", "SA DQ DK H4 HJ");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertTrue(getOutput().contains("(Flush)"));
+	}
+	
+	@Test
+	public void testWinner2ndHandsRankIsPartofOutput() {
+		createInput("S2 S6 S7 S8 S9", "SA DA CA HA HJ");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertTrue(getOutput().contains("(Four of a kind)"));
+	}
+	
 }
