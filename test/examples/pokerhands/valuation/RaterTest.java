@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import examples.pokerhands.model.Hand;
-import examples.pokerhands.model.TestUtils;
+import examples.pokerhands.model.HandUtil;
 
 public class RaterTest {
 	
@@ -13,7 +13,7 @@ public class RaterTest {
 
 	@Test
 	public void testNoRankings() {
-		Hand hand = TestUtils.createHand("H2", "H3", "H4", "H5", "H6");
+		Hand hand = HandUtil.createHand("H2", "H3", "H4", "H5", "H6");
 		
 		Valuation valuation = rater.rate(hand);
 		
@@ -22,7 +22,7 @@ public class RaterTest {
 
 	@Test
 	public void testOnlyHighCardAvailable() {
-		Hand hand = TestUtils.createHand("H2", "H3", "H4", "H5", "H6");
+		Hand hand = HandUtil.createHand("H2", "H3", "H4", "H5", "H6");
 		rater.register(new HighCard());
 		
 		Valuation valuation = rater.rate(hand);
@@ -32,7 +32,7 @@ public class RaterTest {
 
 	@Test
 	public void testFlush() {
-		Hand hand = TestUtils.createHand("H2", "H3", "H4", "H5", "H6");
+		Hand hand = HandUtil.createHand("H2", "H3", "H4", "H5", "H6");
 		rater.register(new Flush());
 		rater.register(new HighCard());
 		
@@ -43,7 +43,7 @@ public class RaterTest {
 
 	@Test
 	public void testNoFlush() {
-		Hand hand = TestUtils.createHand("H2", "H3", "H4", "H5", "C6");
+		Hand hand = HandUtil.createHand("H2", "H3", "H4", "H5", "C6");
 		rater.register(new Flush());
 		rater.register(new HighCard());
 		

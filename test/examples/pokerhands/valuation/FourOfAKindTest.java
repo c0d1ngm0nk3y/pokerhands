@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import examples.pokerhands.model.Hand;
-import examples.pokerhands.model.TestUtils;
+import examples.pokerhands.model.HandUtil;
 
 public class FourOfAKindTest {
 
@@ -14,7 +14,7 @@ public class FourOfAKindTest {
 
 	@Test
 	public void testNoMatch() {
-		hand = TestUtils.createHand("D2", "D3", "D4", "D5", "D6");
+		hand = HandUtil.createHand("D2", "D3", "D4", "D5", "D6");
 
 		Valuation valuation = four.evaluate(hand);
 
@@ -23,7 +23,7 @@ public class FourOfAKindTest {
 
 	@Test
 	public void testFourKings() {
-		hand = TestUtils.createHand("D2", "SK", "DK", "CK", "HK");
+		hand = HandUtil.createHand("D2", "SK", "DK", "CK", "HK");
 
 		Valuation valuation = four.evaluate(hand);
 
@@ -32,7 +32,7 @@ public class FourOfAKindTest {
 
 	@Test
 	public void testThreeKings() {
-		hand = TestUtils.createHand("D2", "D3", "DK", "CK", "HK");
+		hand = HandUtil.createHand("D2", "D3", "DK", "CK", "HK");
 
 		Valuation valuation = four.evaluate(hand);
 
@@ -41,7 +41,7 @@ public class FourOfAKindTest {
 
 	@Test
 	public void testFourJacks() {
-		hand = TestUtils.createHand("DA", "DJ", "DJ", "CJ", "HJ");
+		hand = HandUtil.createHand("DA", "DJ", "DJ", "CJ", "HJ");
 
 		Valuation valuation = four.evaluate(hand);
 
@@ -50,8 +50,8 @@ public class FourOfAKindTest {
 
 	@Test
 	public void testFourQueensBeatFourTens() {
-		hand = TestUtils.createHand("DA", "SQ", "DQ", "CQ", "HQ");
-		Hand hand2 = TestUtils.createHand("SA", "ST", "DT", "CT", "HT");
+		hand = HandUtil.createHand("DA", "SQ", "DQ", "CQ", "HQ");
+		Hand hand2 = HandUtil.createHand("SA", "ST", "DT", "CT", "HT");
 
 		Valuation v1 = four.evaluate(hand);
 		Valuation v2 = four.evaluate(hand2);

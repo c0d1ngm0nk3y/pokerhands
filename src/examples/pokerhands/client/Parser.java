@@ -2,7 +2,7 @@ package examples.pokerhands.client;
 
 import examples.pokerhands.model.Hand;
 //FIXME TestUtils
-import examples.pokerhands.model.TestUtils;
+import examples.pokerhands.model.HandUtil;
 
 public class Parser {
 
@@ -11,7 +11,7 @@ public class Parser {
 		String[] cards = getValidatedCardStrings(input);
 		
 		if(cards.length == 5) {
-			return TestUtils.createHand(cards[0], cards[1], cards[2], cards[3], cards[4]);
+			return HandUtil.createHand(cards[0], cards[1], cards[2], cards[3], cards[4]);
 		}
 		
 		throw new IllegalArgumentException("Could not parse Hand: <" + input + ">");

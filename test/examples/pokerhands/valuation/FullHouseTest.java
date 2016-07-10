@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import examples.pokerhands.model.Hand;
-import examples.pokerhands.model.TestUtils;
+import examples.pokerhands.model.HandUtil;
 
 public class FullHouseTest {
 	
@@ -14,7 +14,7 @@ public class FullHouseTest {
 
 	@Test
 	public void testNoFullHouse() {
-		hand = TestUtils.createHand("D2", "C2", "DQ", "CK", "HK");
+		hand = HandUtil.createHand("D2", "C2", "DQ", "CK", "HK");
 
 		Valuation valuation = fullHouse.evaluate(hand);
 
@@ -23,7 +23,7 @@ public class FullHouseTest {
 
 	@Test
 	public void testFullHouseKings() {
-		hand = TestUtils.createHand("D2", "C2", "DK", "CK", "HK");
+		hand = HandUtil.createHand("D2", "C2", "DK", "CK", "HK");
 
 		Valuation valuation = fullHouse.evaluate(hand);
 
@@ -32,7 +32,7 @@ public class FullHouseTest {
 
 	@Test
 	public void testJustThreeKings() {
-		hand = TestUtils.createHand("D3", "C2", "DK", "CK", "HK");
+		hand = HandUtil.createHand("D3", "C2", "DK", "CK", "HK");
 
 		Valuation valuation = fullHouse.evaluate(hand);
 
@@ -41,8 +41,8 @@ public class FullHouseTest {
 
 	@Test
 	public void testFullHouseKingsBeatsQueen() {
-		hand = TestUtils.createHand("D2", "C2", "DK", "CK", "HK");
-		Hand hand2 = TestUtils.createHand("DA", "CA", "DQ", "CQ", "HQ");
+		hand = HandUtil.createHand("D2", "C2", "DK", "CK", "HK");
+		Hand hand2 = HandUtil.createHand("DA", "CA", "DQ", "CQ", "HQ");
 
 		Valuation v1 = fullHouse.evaluate(hand);
 		Valuation v2 = fullHouse.evaluate(hand2);

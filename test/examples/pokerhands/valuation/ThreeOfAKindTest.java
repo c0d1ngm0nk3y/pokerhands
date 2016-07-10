@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import examples.pokerhands.model.Hand;
-import examples.pokerhands.model.TestUtils;
+import examples.pokerhands.model.HandUtil;
 
 public class ThreeOfAKindTest {
 
@@ -14,7 +14,7 @@ public class ThreeOfAKindTest {
 
 	@Test
 	public void testNoMatch() {
-		hand = TestUtils.createHand("D2", "D3", "D4", "D5", "D6");
+		hand = HandUtil.createHand("D2", "D3", "D4", "D5", "D6");
 
 		Valuation valuation = three.evaluate(hand);
 
@@ -23,7 +23,7 @@ public class ThreeOfAKindTest {
 
 	@Test
 	public void testThreeKings() {
-		hand = TestUtils.createHand("D2", "D3", "DK", "CK", "HK");
+		hand = HandUtil.createHand("D2", "D3", "DK", "CK", "HK");
 
 		Valuation valuation = three.evaluate(hand);
 
@@ -32,7 +32,7 @@ public class ThreeOfAKindTest {
 
 	@Test
 	public void testTwoKings() {
-		hand = TestUtils.createHand("D2", "D3", "DQ", "CK", "HK");
+		hand = HandUtil.createHand("D2", "D3", "DQ", "CK", "HK");
 
 		Valuation valuation = three.evaluate(hand);
 
@@ -41,7 +41,7 @@ public class ThreeOfAKindTest {
 
 	@Test
 	public void testThreeJacks() {
-		hand = TestUtils.createHand("DA", "DQ", "DJ", "CJ", "HJ");
+		hand = HandUtil.createHand("DA", "DQ", "DJ", "CJ", "HJ");
 
 		Valuation valuation = three.evaluate(hand);
 
@@ -50,8 +50,8 @@ public class ThreeOfAKindTest {
 
 	@Test
 	public void testThreeJacksBeatThreeTens() {
-		hand = TestUtils.createHand("DA", "DQ", "DJ", "CJ", "HJ");
-		Hand hand2 = TestUtils.createHand("SA", "SQ", "DT", "CT", "HT");
+		hand = HandUtil.createHand("DA", "DQ", "DJ", "CJ", "HJ");
+		Hand hand2 = HandUtil.createHand("SA", "SQ", "DT", "CT", "HT");
 
 		Valuation v1 = three.evaluate(hand);
 		Valuation v2 = three.evaluate(hand2);
