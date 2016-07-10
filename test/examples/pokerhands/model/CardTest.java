@@ -23,6 +23,13 @@ public class CardTest {
 		assertEquals(Suit.DIAMONDS, card.getSuit());
 		assertEquals(Value.THREE, card.getValue());
 	}
+
+	@Test
+	public void testToString() {
+		card = new Card("D3");
+		
+		assertEquals("D3", card.toString());
+	}
 	
     @Test(expected=IllegalArgumentException.class)
 	public void testConstructorArgTooShort() throws Exception {

@@ -23,4 +23,15 @@ public class Hand {
 		return sortedCards.toArray(c);
 	}
 
+	@Override
+	public String toString() {
+		String string = new String();
+		
+		for(Card c : getSortedCards()) {
+			string += c.toString() + " ";
+		}
+		
+		return string.trim();
+	}
+
 }

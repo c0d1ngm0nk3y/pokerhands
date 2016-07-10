@@ -7,7 +7,19 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import examples.pokerhands.model.Hand;
+import examples.pokerhands.valuation.Rater;
+import examples.pokerhands.valuation.Valuation;
+
 public class SimpleComparer {
+
+	private Rater rater;
+
+	public SimpleComparer() {
+		super();
+		rater = new Rater();
+		rater.registerAll();
+	}
 
 	public boolean compare2Hands(InputStream in, OutputStream out) {
 		
@@ -17,21 +29,28 @@ public class SimpleComparer {
 		
 		try {
 			String line1 = reader.readLine();
-			parser.parseHand(line1);
+			Hand hand1 = parser.parseHand(line1);
+			Valuation v1 = rater.rate(hand1);
 			
 			String line2 = reader.readLine();
-			parser.parseHand(line2);
+			Hand hand2 = parser.parseHand(line2);
+			Valuation v2 = rater.rate(hand2);
 			
-			writer.write(line1);
-			writer.write(line2);
+			int result = v1.compareTo(v2);
+			
+			if(result > 0) {
+				out.write(hand1.toString().getBytes());
+			} else if(result < 0) {
+				out.write(hand2.toString().getBytes());		
+			} else {
+				out.write("No winning hand".getBytes());
+			}
+			
 			writer.flush();
 		} catch (Exception e) {
 			return false;
 		}
-		//finally {
-			//reader.close();
-		//}
-		
+		//FIXME close resource
 		
 		return true;
 	}

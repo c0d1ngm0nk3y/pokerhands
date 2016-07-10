@@ -38,4 +38,11 @@ public class HandTest {
 		assertEquals(Value.ACE, cards[4].getValue());
 	}
 
+	@Test
+	public void testHandToString() {
+		hand = TestUtils.createHand("D2", "D5", "H3", "SK", "DK");
+		
+		assertEquals("D2 H3 D5 SK DK", hand.toString());
+	}
+
 }

@@ -29,6 +29,10 @@ public class SimpleComparerTest {
 		String input = line1 + "\n" + line2 +"\n";
 		in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
 	}
+
+	private String getOutput() {
+		return new String(out.toByteArray());
+	}
 	
 	@Test
 	public void testValidInput() {
@@ -37,7 +41,49 @@ public class SimpleComparerTest {
 		boolean result = comparer.compare2Hands(in, out);
 		
 		assertTrue(result);
-		assertTrue(out.toByteArray().length > 0);
+		assertTrue(getOutput().length() > 0);
+	}
+	
+	@Test
+	public void testWinnerHandIsPartofOutput() {
+		createInput("S5 S6 S7 S8 S9", "SA DQ DK H4 HJ");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertTrue(getOutput().contains("S5 S6 S7 S8 S9"));
+	}
+	
+	@Test
+	public void testLoserHandIsNotPartofOutput() {
+		createInput("S5 S6 S7 S8 S9", "SA DQ DK H4 HJ");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertFalse(getOutput().contains("SA DQ DK H4 HJ"));
+	}
+	
+	@Test
+	public void testWinningHand2IsPartofOutput() {
+		createInput("SA DQ DK H4 HJ", "S5 S6 S7 S8 S9");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertFalse(getOutput().contains("SA DQ DK H4 HJ"));
+		assertTrue(getOutput().contains("S5 S6 S7 S8 S9"));
+	}
+	
+	@Test
+	public void testDeuceHasNoHandInOutput() {
+		createInput("D5 D6 D7 D8 D9", "S5 S6 S7 S8 S9");
+		
+		boolean result = comparer.compare2Hands(in, out);
+		
+		assertTrue(result);
+		assertFalse(getOutput().contains("D5 D6 D7 D8 D9"));
+		assertFalse(getOutput().contains("S5 S6 S7 S8 S9"));
 	}
 	
 }

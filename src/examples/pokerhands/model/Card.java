@@ -60,6 +60,12 @@ public class Card implements Comparable<Card> {
 	}
 
 	@Override
+	public String toString() {
+		String string = new String();
+		return string + this.suit.code + this.value.code; 
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
