@@ -29,37 +29,43 @@ public class SimpleComparer {
 		Parser parser = new Parser();
 		
 		try {
-			out.write("Enter hand 1: ".getBytes());
-			out.flush();
+			writer.write("Enter hand 1: ");
+			writer.flush();
 			String line1 = reader.readLine();
+			if(null == line1) {
+				line1 = "";
+			}
 			Hand hand1 = parser.parseHand(line1);
 			Valuation v1 = rater.rate(hand1);
 			
-			out.write("Enter hand 2: ".getBytes());
-			out.flush();
+			writer.write("Enter hand 2: ");
+			writer.flush();
 			String line2 = reader.readLine();
+			if(null == line2) {
+				line2 = "";
+			}
 			Hand hand2 = parser.parseHand(line2);
 			Valuation v2 = rater.rate(hand2);
 			
 			int result = v1.compareTo(v2);
 			
 			if(result > 0) {
-				out.write("Winning hand: ".getBytes());
-				out.write(hand1.toString().getBytes());
-				out.write((" (" + v1.getRank().toString() + ")").getBytes());
+				writer.write("Winning hand: ");
+				writer.write(hand1.toString());
+				writer.write(" (" + v1.getRank().toString() + ")");
 			} else if(result < 0) {
-				out.write("Winning hand: ".getBytes());
-				out.write(hand2.toString().getBytes());		
-				out.write((" (" + v2.getRank().toString() + ")").getBytes());
+				writer.write("Winning hand: ");
+				writer.write(hand2.toString());
+				writer.write(" (" + v2.getRank().toString() + ")");
 			} else {
-				out.write("No winning hand".getBytes());
+				writer.write("No winning hand");
 			}
-			out.write("\n\n".getBytes());
-			
+			writer.write("\n\n");
 			writer.flush();
 		} catch (Exception e) {
 			try {
 				writer.write("Exception:" + e);
+				writer.flush();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
