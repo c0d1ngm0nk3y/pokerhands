@@ -53,7 +53,6 @@ public class SimpleComparer {
 			}
 			return false;
 		}
-		
 		return true;
 	}
 

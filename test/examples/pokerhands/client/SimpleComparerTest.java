@@ -105,5 +105,5 @@ public class SimpleComparerTest {
 		assertTrue(result);
 		assertTrue(getOutput().contains("(Four of a kind)"));
 	}
-	
+
 }
