@@ -58,4 +58,15 @@ public class FlushTest {
 		assertTrue(v1.compareTo(v2) < 0);
 	}
 
+	@Test
+	public void testFlushTieBreakersHighestCardCounts() {
+		Hand hand1 = HandUtil.createHand("C4", "C5", "CQ", "CT", "CK");
+		Hand hand2 = HandUtil.createHand("D3", "D4", "DQ", "DT", "DA");
+
+		Valuation v1 = flush.evaluate(hand1);
+		Valuation v2 = flush.evaluate(hand2);
+		
+		assertTrue(v1.compareTo(v2) < 0);
+	}
+
 }

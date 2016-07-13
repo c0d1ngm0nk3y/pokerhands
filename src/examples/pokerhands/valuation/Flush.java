@@ -12,7 +12,7 @@ public class Flush implements HandRanking {
 		
 		if(isFlash) {
 			Card[] cards = hand.getSortedCards();
-			return new Valuation(Rank.FLUSH, cards[0].getValue(), cards[1].getValue(), cards[2].getValue(), cards[3].getValue(), cards[4].getValue());			
+			return new Valuation(Rank.FLUSH, cards[4].getValue(), cards[3].getValue(), cards[2].getValue(), cards[1].getValue(), cards[0].getValue());			
 		}
 		else {
 			return new Valuation(Rank.NONE);

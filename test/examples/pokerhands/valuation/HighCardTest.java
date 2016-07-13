@@ -53,4 +53,15 @@ public class HighCardTest {
 		assertTrue(v1.compareTo(v2) > 0);
 	}
 
+	@Test
+	public void testEvaluateHighCardLastCardHighestCardCount() {
+		Hand hand1 = HandUtil.createHand("C3", "C5", "C4", "CQ", "HK");
+		Hand hand2 = HandUtil.createHand("D2", "D5", "D4", "DQ", "DA");
+		
+		Valuation v1 = highCard.evaluate(hand1);
+		Valuation v2 = highCard.evaluate(hand2);
+		
+		assertTrue(v1.compareTo(v2) < 0);
+	}
+
 }
